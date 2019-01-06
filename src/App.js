@@ -6,7 +6,7 @@ class Unit extends React.Component {
   handleInputChange = (event) => {
     const { value, name } = event.currentTarget;
     let parsedValue = value;
-    if (name != 'name') {
+    if (name !== 'name') {
       parsedValue = Number(value) ? Number(value) : 0;
     }
     const newStats = {
