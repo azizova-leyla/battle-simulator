@@ -65,7 +65,7 @@ class App extends Component {
         dice: 5,
         attack: 7,
         power: 5,
-        defense: 5,
+        defense: 2,
         toughness: 2,
         courage: 12,
         range: 0,
