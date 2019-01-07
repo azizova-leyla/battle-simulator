@@ -7,7 +7,9 @@ class Unit extends React.Component {
     const { value, name } = event.currentTarget;
     let parsedValue = value;
     if (name !== 'name') {
-      parsedValue = Number(value) ? Number(value) : 0;
+      if (parsedValue !== '' && parsedValue !== '-') {
+        parsedValue = Number(value) ? Number(value) : 0;
+      }
     }
     const newStats = {
       ...this.props.values,
@@ -56,7 +58,7 @@ class App extends Component {
         turns: 0,
         winner: 'press button to start simulation',
       },
-      num_games: 2000,
+      numGames: 1,
       unit1: {
         name: 'Phalanx',
         green: 6,
@@ -71,6 +73,11 @@ class App extends Component {
         range: 0,
         speed: 3.5,
         fear_level: 1,
+        charging_dice_mod: 2,
+        charging_attack_mod: 1,
+        charging_power_mod: -1,
+        charging_defense_mod: -1,
+        charging_toughness_mod: 2,
         impact_hits: 1
       },
       unit2: {
@@ -87,6 +94,11 @@ class App extends Component {
         range: 0,
         speed: 3.5,
         fear_level: 1,
+        charging_dice_mod: 0,
+        charging_attack_mod: 0,
+        charging_power_mod: 0,
+        charging_defense_mod: 0,
+        charging_toughness_mod: 0,
         impact_hits: 0
       }
     };
@@ -96,7 +108,7 @@ class App extends Component {
     const results = simulation.simulateMany(
       this.state.unit1, 
       this.state.unit2, 
-      this.state.num_games);
+      this.state.numGames);
 
     this.setState({
       results
@@ -109,24 +121,44 @@ class App extends Component {
     });
   };
 
+  handleNumGamesChange = (event) => {
+    const value = event.currentTarget.value;
+    const numGames = Number(value) ? Number(value) : 0;
+    this.setState({
+      numGames
+    });
+  }
+
   render() {
-    console.log(this.state.results);
     return (
       <div className = 'App'>
-        <header className = 'App-header'>
-          <h1>Battle simulator</h1>
-          <div>Number of games: {this.state.num_games}</div>
-          <div>{this.renderUnit(this.state.unit1, 'unit1')}</div>
-          <div>{this.renderUnit(this.state.unit2, 'unit2')}</div>
-          <button onClick={this.handleSimulateClick}>Simulate</button>
-          <h2>Simulation results</h2>
-          <div>{this.state.unit1.name} wins: {this.state.results.unit1_wins} 
-            ({this.state.results.unit1_wins_percent}%)</div>
-          <div> {this.state.unit2.name} wins: {this.state.results.unit2_wins}
-            ({this.state.results.unit2_wins_percent}%)</div>
-          <div>Draws: {this.state.results.draws} 
-            ({this.state.results.draws_percent}%) </div>
-        </header>
+        <h1>Battle simulator</h1>
+        <div>        
+          <label>
+            Number of games: 
+            <input
+              type="text"
+              value={this.state.numGames}
+              name="numGames"
+              onChange={this.handleNumGamesChange}
+            />
+          </label>
+        </div>
+        <div className = 'box'>
+          <div className="half-page-box">{this.renderUnit(this.state.unit1, 'unit1')}</div>
+          <div className="half-page-box">{this.renderUnit(this.state.unit2, 'unit2')}</div>
+        </div>
+        <button className = "myButton" onClick={this.handleSimulateClick}>Simulate</button>
+        <h2>Simulation results</h2>
+        <div>{this.state.unit1.name} wins: {this.state.results.unit1_wins} 
+          ({this.state.results.unit1_wins_percent}%)
+        </div>
+        <div> {this.state.unit2.name} wins: {this.state.results.unit2_wins}
+          ({this.state.results.unit2_wins_percent}%)
+        </div>
+        <div>Draws: {this.state.results.draws} 
+          ({this.state.results.draws_percent}%) 
+        </div>
       </div>
     );
   }
