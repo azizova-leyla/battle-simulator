@@ -55,8 +55,7 @@ class App extends Component {
 
     this.state = {
       results: {
-        turns: 0,
-        winner: 'press button to start simulation',
+        empty: true
       },
       numGames: 1,
       unit1: {
@@ -150,15 +149,7 @@ class App extends Component {
         </div>
         <button className = "myButton" onClick={this.handleSimulateClick}>Simulate</button>
         <h2>Simulation results</h2>
-        <div>{this.state.unit1.name} wins: {this.state.results.unit1_wins} 
-          ({this.state.results.unit1_wins_percent}%)
-        </div>
-        <div> {this.state.unit2.name} wins: {this.state.results.unit2_wins}
-          ({this.state.results.unit2_wins_percent}%)
-        </div>
-        <div>Draws: {this.state.results.draws} 
-          ({this.state.results.draws_percent}%) 
-        </div>
+        <div>{this.renderResults(this.state.results)}</div>
       </div>
     );
   }
@@ -170,6 +161,21 @@ class App extends Component {
       onChange={this.handleUnitPropertyValueChange}
     />;
   };
+
+  renderResults = (results) => {
+    if (results.empty) {
+      return;
+    }
+    return results.map(this.renderResult);
+  }
+
+  renderResult = (result) => {
+    return (
+      <div>{result.name} wins: {result.wins} ({result.wins_percent}%). 
+            Average win turn: {result.avg_turn}
+      </div>
+    )
+  }
 }
 
 export default App;
