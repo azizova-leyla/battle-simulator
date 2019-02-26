@@ -1,5 +1,7 @@
 import './App.css';
 import simulation from './Simulation.js'
+import StatsComponent from './components/StatsComponent.js'
+import statsHelpers from './StatsHelpers.js'
 import React, { Component } from 'react';
 
 class Unit extends React.Component {
@@ -108,9 +110,17 @@ class App extends Component {
       this.state.unit1, 
       this.state.unit2, 
       this.state.numGames);
-
+    const unit1_wins = statsHelpers.winsPerUnit(results, 
+                                                this.state.unit1.name,
+                                                this.state.numGames);
+    const unit2_wins = statsHelpers.winsPerUnit(results, 
+                                                this.state.unit2.name, 
+                                                this.state.numGames);
+    const draws = statsHelpers.winsPerUnit(results, 
+                                            'draw',
+                                            this.state.numGames);
     this.setState({
-      results
+      results: [unit1_wins, unit2_wins, draws]
     });
   };
 
@@ -149,7 +159,7 @@ class App extends Component {
         </div>
         <button className = "myButton" onClick={this.handleSimulateClick}>Simulate</button>
         <h2>Simulation results</h2>
-        <div>{this.renderResults(this.state.results)}</div>
+        <div><StatsComponent aggregatedResults={this.state.results} /></div>
       </div>
     );
   }
@@ -161,21 +171,6 @@ class App extends Component {
       onChange={this.handleUnitPropertyValueChange}
     />;
   };
-
-  renderResults = (results) => {
-    if (results.empty) {
-      return;
-    }
-    return results.map(this.renderResult);
-  }
-
-  renderResult = (result) => {
-    return (
-      <div>{result.name} wins: {result.wins} ({result.wins_percent}%). 
-            Average win turn: {result.avg_turn}
-      </div>
-    )
-  }
 }
 
 export default App;

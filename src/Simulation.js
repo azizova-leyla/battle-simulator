@@ -1,6 +1,5 @@
 import courageCheckHelpers from './CourageChecksHelpers.js'
 import combat from './CombatHelpers.js'
-import statsHelpers from './StatsHelpers.js'
 import unitHelpers from './UnitHelpers.js'
 
 const simulation = {
@@ -10,10 +9,7 @@ const simulation = {
       const result = this.simulateGame(unit1, unit2);
       allResults.push(result);
     }
-    const unit1_wins = statsHelpers.winsPerUnit(allResults, unit1.name, n);
-    const unit2_wins = statsHelpers.winsPerUnit(allResults, unit2.name, n);
-    const draws = statsHelpers.winsPerUnit(allResults, 'draw', n);
-    return [unit1_wins, unit2_wins, draws];
+    return allResults;
   },
   simulateGame(unit1, unit2) {
     let distance = 0.25;
