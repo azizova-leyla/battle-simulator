@@ -1,13 +1,13 @@
 {
-  "main.css": "/static/css/main.e020e97d.chunk.css",
-  "main.js": "/static/js/main.a6a55e03.chunk.js",
-  "main.js.map": "/static/js/main.a6a55e03.chunk.js.map",
-  "static/js/1.b92ceea5.chunk.js": "/static/js/1.b92ceea5.chunk.js",
-  "static/js/1.b92ceea5.chunk.js.map": "/static/js/1.b92ceea5.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
-  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
-  "static/css/main.e020e97d.chunk.css.map": "/static/css/main.e020e97d.chunk.css.map",
-  "index.html": "/index.html",
-  "precache-manifest.bd1a6a1a705c5a7addd26321f07edae4.js": "/precache-manifest.bd1a6a1a705c5a7addd26321f07edae4.js",
-  "service-worker.js": "/service-worker.js"
+  "main.css": "/battle-simulator/static/css/main.d5fe4d41.chunk.css",
+  "main.js": "/battle-simulator/static/js/main.1854c082.chunk.js",
+  "main.js.map": "/battle-simulator/static/js/main.1854c082.chunk.js.map",
+  "runtime~main.js": "/battle-simulator/static/js/runtime~main.ae1a645d.js",
+  "runtime~main.js.map": "/battle-simulator/static/js/runtime~main.ae1a645d.js.map",
+  "static/js/2.14dde67a.chunk.js": "/battle-simulator/static/js/2.14dde67a.chunk.js",
+  "static/js/2.14dde67a.chunk.js.map": "/battle-simulator/static/js/2.14dde67a.chunk.js.map",
+  "index.html": "/battle-simulator/index.html",
+  "precache-manifest.fbb4315b5ab8017875840b6ea30ce5f1.js": "/battle-simulator/precache-manifest.fbb4315b5ab8017875840b6ea30ce5f1.js",
+  "service-worker.js": "/battle-simulator/service-worker.js",
+  "static/css/main.d5fe4d41.chunk.css.map": "/battle-simulator/static/css/main.d5fe4d41.chunk.css.map"
 }
